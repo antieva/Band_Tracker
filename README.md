@@ -8,9 +8,13 @@
 
 _A web app to to track bands and the venues where they've played concerts._
 _It will let user to:_
-* _be able to create Bands that have played at a Venue;_  
+* _be able to create Bands that have played at a Venue;_
+* _see the list of all Bands;_
+* _see every Band's details, add Venues to that Band or delete the Band;_
 * _see all of the Venues that have hosted that band and allow them to add a Venue to that Band;_
 * _see a single concert venue, list all of the bands that have played at that venue so far and allow them to add a band to that venue.;_
+* _see list all Venues stored in Database;_
+* _see every Venue's details, add Bands to that Venue or delete Venue;
 
 
 ## Specifications
