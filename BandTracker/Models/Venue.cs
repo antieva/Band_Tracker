@@ -295,6 +295,68 @@ namespace BandTrackerApp
             return allVenues;
         }
 
+        public static Venue Find(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM venues WHERE id = (@searchId);";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = id;
+            cmd.Parameters.Add(searchId);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            Venue newVenue = new Venue("","","","");
+
+            while(rdr.Read())
+            {
+               newVenue.SetId(rdr.GetInt32(0));
+               newVenue.SetName(rdr.GetString(1));
+               newVenue.SetAddress(rdr.GetString(2));
+               newVenue.SetContact(rdr.GetString(3));
+               newVenue.SetEventDate(rdr.GetString(4));
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+            return newVenue;
+        }
+
+        public static List<Venue> FindByDate(string date)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM venues WHERE eventDate = (@searchName);";
+
+            MySqlParameter searchDate = new MySqlParameter();
+            searchDate.ParameterName = "@searchName";
+            searchDate.Value = date;
+            cmd.Parameters.Add(searchDate);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            List<Venue> allVenues = new List<Venue>{};
+
+            while(rdr.Read())
+            {
+                Venue newVenue = new Venue(rdr.GetString(1), rdr.GetString(4), rdr.GetString(2), rdr.GetString(3), rdr.GetInt32(0));
+                allVenues.Add(newVenue);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+            return allVenues;
+        }
+
         public static void DeleteAll()
         {
             MySqlConnection conn = DB.Connection();

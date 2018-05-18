@@ -95,12 +95,12 @@ namespace BandTrackerApp
             return _members;
         }
 
-        public string GetOriginplace()
+        public string GetOriginPlace()
         {
             return _originPlace;
         }
 
-        public string GetoriginYear()
+        public string GetOriginYear()
         {
             return _originYear;
         }
@@ -136,8 +136,8 @@ namespace BandTrackerApp
               bool genreEquality = this.GetGenre() == newBand.GetGenre();
               bool leaderEquality = this.GetLeader() == newBand.GetLeader();
               bool membersEquality = this.GetMembers() == newBand.GetMembers();
-              bool originPlaceEquality = this.GetOriginplace() == newBand.GetOriginplace();
-              bool originYearEquality = this.GetoriginYear() == newBand.GetoriginYear();
+              bool originPlaceEquality = this.GetOriginPlace() == newBand.GetOriginPlace();
+              bool originYearEquality = this.GetOriginYear() == newBand.GetOriginYear();
 
               return (idEquality && nameEquality && agentEquality && agentContactEquality && genreEquality && leaderEquality && membersEquality && originPlaceEquality && originYearEquality);
           }
@@ -407,7 +407,7 @@ namespace BandTrackerApp
            return newBand;
        }
 
-       public static List<Band> Find(string name)
+       public static List<Band> FindByName(string name)
        {
            MySqlConnection conn = DB.Connection();
            conn.Open();
@@ -437,7 +437,7 @@ namespace BandTrackerApp
            return allBands;
        }
 
-       public static List<Band> Find(string genre)
+       public static List<Band> FindByGenre(string genre)
        {
            MySqlConnection conn = DB.Connection();
            conn.Open();

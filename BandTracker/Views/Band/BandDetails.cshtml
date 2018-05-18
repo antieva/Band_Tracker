@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <meta charset="utf-8">
+    <title>Band Tracker</title>
+  </head>
+  <body>
+      <div class="container">
+       <h1>Band Tracker</h1>
+       <nav>
+        <a href="/home">Home Page</a> |
+        <a href="/new/band">Add Band</a> |
+        <a href="/venues/list">All Venues</a> |
+        <a href="/new/venue">Add Venue</a>
+      </nav>
+      <h3>@Model["band"].GetName() details: </h3>
+        <p>Genre: @Model["band"].GetGenre()</p>
+        <p>Leader: @Model["band"].GetLeader()</p>
+        <p>Members: @Model["band"].GetMembers()</p>
+        <p>Origin Place: @Model["band"].GetOriginPlace()</p>
+        <p>Origin Year: @Model["band"].GetOriginYear()</p>
+        <p>Agent: @Model["band"].GetAgent()</p>
+        <p>Agent Contacts: @Model["band"].GetAgentContact()</p>
+        <p>Venues:
+        @foreach (var venue in @Model["band"].GetVenues())
+        {
+          <a href="/venue/@venue.GetId()/details">@venue.GetName()</a>
+        }
+        <br>
+        <form action='/band/@Model["band"].GetId()/newVenue' method="post">
+          <h3 class="form-signin-heading">Add Venue</h3>
+          <select name="venue">
+            @foreach (var venue in @Model["venues"])
+            {
+                <option value="@venue.GetId()">@venue.GetName() - @venue.GetEventDate()</option>
+            }
+          </select>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <br>
+        <br>
+        <hr>
+        <form action='/band/@Model["band"].GetId()/delete' method="post">
+          <button type="submit" class="btn btn-danger">Delete Band</button>
+        </form>
+    </div>
+  </body>
+</html>

@@ -161,5 +161,19 @@ namespace BandTrackerApp.Tests
               Assert.AreEqual(testBand, result);
           }
 
+          [TestMethod]
+          public void FindByName_BandName_Band()
+          {
+              Band firstBand = new Band("Black Cats", "blues", "Kloud McCris", "Jill, John, Kate, Delan", "Tampa, Florida", "1990", "Jane Smith", "206-700-0000");
+              firstBand.Save();
+
+              Band secondBand = new Band("Black JACK", "ROCK", "Jack Goover", "Jill, John, Kate, Delan", "Tacoma, WA", "2015", "Karla Smith", "206-880-0000");
+              secondBand.Save();
+
+              List<Band> result = Band.FindByName("Black");
+              List<Band> test = new List<Band>{firstBand, secondBand};
+              CollectionAssert.AreEqual(test, result);
+          }
+
       }
 }

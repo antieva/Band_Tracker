@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <meta charset="utf-8">
+    <title>Band Tracker</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Band Tracker</h1>
+      <nav>
+       <a href="/home">Home Page</a> |
+       <a href="/bands/list">All Bands</a> |
+       <a href="/new/band">Add Band</a> |
+       <a href="/venues/list">All Venues</a>
+     </nav>
+      <h2>Add Venue</h2>
+      <form action="/new/venue" method="post">
+        <div class="form-group">
+          <label for="name">Place Name</label>
+          <input name="name" class='form-control width' type='text'>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Date</label>
+          <input name="eventDate" class='form-control width' type='text'>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input name="address" class='form-control width' type='text'>
+        </div>
+        <div class="form-group">
+          <label for="contact">Contacts</label>
+          <input name="contact" class='form-control width' type='text'>
+        </div>
+
+        <button type='submit' class='btn btn-primary'>Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
